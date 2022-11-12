@@ -12,16 +12,17 @@ class CurrentPrice extends StatefulWidget {
   CurrentPrice({Key? key, required this.name}) : super(key: key);
 
   @override
-  State<CurrentPrice> createState() => _CurrentPriceState();
+  State<CurrentPrice> createState() => _CurrentPriceState(name);
   String name;
 }
 
 class _CurrentPriceState extends State<CurrentPrice> {
   DataServices ds = DataServices();
-  late String price;
+  String price = "";
+  String id = "";
 
-  _CurrentPriceState() {
-    ds.getCurrentPrice(widget.name).then((value) => handleData(value));
+  _CurrentPriceState(String name) {
+    ds.getCurrentPrice(name).then((value) => handleData(value));
   }
 
   void handleData(Map<String, dynamic> data) {
@@ -29,7 +30,8 @@ class _CurrentPriceState extends State<CurrentPrice> {
       if (data["market_data"]["current_price"]["usd"] == null) {
         price = "No Data";
       }
-      price = data["market_data"]["current_price"]["usd"];
+      price = data["market_data"]["current_price"]["usd"].toString();
+      id = data["name"];
     });
   }
 
@@ -52,11 +54,20 @@ class _CurrentPriceState extends State<CurrentPrice> {
         ),
         height: 55,
         width: MediaQuery.of(context).size.width,
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(price),
+            Row(
+              children: [
+                Text(id),
+              ],
+            ),
+            Row(
+              children: [
+                Text("\$$price"),
+              ],
+            ),
           ],
         ),
       ),

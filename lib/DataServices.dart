@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:crypto_web_app/CryptoPrice.dart';
 import 'package:http/http.dart' as http;
 
 ///
@@ -22,10 +23,10 @@ class DataServices {
   /// CoinGecko Swagger documentation: https://www.coingecko.com/en/api/documentation
   /// (Under GET/coins/{id}/market_chart)
   ///
-  Future<Map<String, dynamic>> getHistory(String currency) async {
+  Future<Map<String, dynamic>> getMarketCharts(String currency) async {
     var url = Uri.https(
       "api.coingecko.com",
-      "api/v3/coins/$currency/market_charts",
+      "api/v3/coins/$currency/market_chart",
       {"vs_currency": "usd", "days": "7", "interval": "5%20minutes"},
     );
 
@@ -42,16 +43,18 @@ class DataServices {
   /// then the index of the thing in the list inside the key that you would like to
   /// add to the empty list.
   ///
-  List<double> convertToList(Map<String, dynamic> data, String key, int index) {
+  List<CryptoPrice> addToList(Map<String, dynamic> data, String key) {
     // Create an empty list
-    List<double> listOfValues = [];
+    List<CryptoPrice> cp = [];
+
     // for loop to go through the values of the list that is the value of the
     // key
     for (var list in data[key]) {
       // adds the value of the index that you choose into the listOfValues
-      listOfValues.add(list[index]);
+      CryptoPrice newPrice = CryptoPrice(list[0], list[1]);
+      cp.add(newPrice);
     }
-    return listOfValues;
+    return cp;
   }
 
   /// getCurrentPrice() returns a Map<String, dynamic> that has the information of

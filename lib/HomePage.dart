@@ -48,66 +48,50 @@ class _HomePageState extends State<HomePage> {
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Charts",
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
             height: 150,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ListView(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    CryptoChart(currency: "bitcoin"),
-                    CryptoChart(currency: "ethereum"),
-                    CryptoChart(currency: "dogecoin"),
-                    CryptoChart(currency: "shiba-inu"),
-                    CryptoChart(currency: "usd-coin"),
-                  ],
+                Expanded(
+                  child: ListView(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      CryptoChart(currency: "bitcoin"),
+                      CryptoChart(currency: "ethereum"),
+                      CryptoChart(currency: "dogecoin"),
+                      CryptoChart(currency: "shiba-inu"),
+                      CryptoChart(currency: "usd-coin"),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 1000,
-              child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CurrentPrice(name: "bitcoin"),
-                      CurrentPrice(name: "ethereum"),
-                      CurrentPrice(name: "shiba-inu"),
-                    ],
-                  ),
-                ],
+          Row(
+            children: [
+              Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CurrentPrice(name: "bitcoin"),
+                        CurrentPrice(name: "ethereum"),
+                        CurrentPrice(name: "shiba-inu"),
+                        CurrentPrice(name: "dogecoin"),
+                        CurrentPrice(name: "usd-coin"),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          )
+            ],
+          ),
         ],
       ),
     );

@@ -1,8 +1,9 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:crypto_web_app/DataServices.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:crypto_web_app/CryptoPrice.dart';
 
 /// CryptoChart is a Stateful widget that returns a Container that has a
 /// Syncfusion line chart that is imported from the Syncfusion Library
@@ -16,22 +17,22 @@ class CryptoChart extends StatefulWidget {
   CryptoChart({Key? key, required this.currency}) : super(key: key);
 
   @override
-  State<CryptoChart> createState() => _CryptoChartState();
+  State<CryptoChart> createState() => _CryptoChartState(currency);
   String currency;
 }
 
 class _CryptoChartState extends State<CryptoChart> {
   DataServices ds = DataServices();
-  List<double> prices = [];
+  List<CryptoPrice> prices = [];
 
-  _CryptoChartState() {
-    ds.getHistory(widget.currency).then((value) => handleData(value));
+  _CryptoChartState(String currency) {
+    ds.getMarketCharts(currency).then((value) => handleData(value));
   }
 
   void handleData(Map<String, dynamic> data) {
     setState(
       () {
-        prices = ds.convertToList(data, "price", 1);
+        prices = ds.addToList(data, "prices");
       },
     );
   }
@@ -43,7 +44,7 @@ class _CryptoChartState extends State<CryptoChart> {
     BoxDecoration myBoxDecoration() {
       return BoxDecoration(
         border: Border.all(
-          color: Colors.grey,
+          color: Colors.black,
         ),
         boxShadow: [
           BoxShadow(color: Colors.black26.withOpacity(0.5)),
@@ -51,18 +52,27 @@ class _CryptoChartState extends State<CryptoChart> {
       );
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        margin: const EdgeInsets.all(16),
-        decoration: myBoxDecoration(),
-        width: 200,
-        height: 200,
-        child: SfSparkLineChart(
-          data: prices,
-          color: Colors.blue,
-          axisLineWidth: 2.0,
-        ),
+    child:
+    return Container(
+      margin: const EdgeInsets.all(16),
+      decoration: myBoxDecoration(),
+      width: 500,
+      height: 500,
+      child: Row(
+        children: [
+          Text(widget.currency),
+          SfCartesianChart(
+            primaryXAxis: CategoryAxis(),
+            series: <ChartSeries>[
+              LineSeries<CryptoPrice, int>(
+                dataSource: prices,
+                xValueMapper: (CryptoPrice data, _) => data.time,
+                yValueMapper: (CryptoPrice data, _) => data.price,
+              )
+            ],
+            backgroundColor: Colors.black,
+          ),
+        ],
       ),
     );
   }

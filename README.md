@@ -5,7 +5,7 @@ This web/mobile app is written in Dart using the Flutter framework.
 
 My purpose for creating this software was two fold. One was I wanted a place on my phone that I could quickly see Crypto Currency prices without having to create an account or enter my email anywhere. Second was to try my hand at stateful widgets and seeing more clearly how they work and how async methods work along side them.
 
-[Software Demo Video](https://youtu.be/o1BYcJ4nqwA)
+[Software Demo Video](https://www.youtube.com/watch?v=2Ho4vvHVXhM)
 
 # Development Environment
 

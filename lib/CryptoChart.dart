@@ -39,8 +39,6 @@ class _CryptoChartState extends State<CryptoChart> {
 
   @override
   Widget build(BuildContext context) {
-    //var data = ds.getData(widget.currency, ds.getDate());
-
     BoxDecoration myBoxDecoration() {
       return BoxDecoration(
         border: Border.all(
@@ -70,7 +68,7 @@ class _CryptoChartState extends State<CryptoChart> {
                 yValueMapper: (CryptoPrice data, _) => data.price,
               )
             ],
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.white,
           ),
         ],
       ),

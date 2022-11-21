@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:crypto_web_app/CryptoChart.dart';
 import 'package:crypto_web_app/CurrentPrice.dart';
+import 'package:crypto_web_app/BottomAppBar.dart' as bottom;
 
 /// This is the HomePage widget that will show when the app is started.
 /// The HomePage is a stateful widget that shows the other two widgets
@@ -19,7 +20,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         centerTitle: false,
         title: const Text("CryptoChat"),
         actions: [
@@ -42,6 +45,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      bottomNavigationBar: const bottom.BottomAppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,

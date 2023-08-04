@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:crypto_web_app/HomePage.dart';
+import 'package:crypto_web_app/views/HomePage.dart';
 
 /// Welcome to CryptoChat! This app is an experiment using the CoinGecko
 /// API(CoinGecko Swagger documentation: https://www.coingecko.com/en/api/documentation),

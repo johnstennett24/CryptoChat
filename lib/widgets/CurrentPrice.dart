@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:crypto_web_app/DataServices.dart';
+import 'package:crypto_web_app/data/DataServices.dart';
 
 /// The CurrentPrice widget is a Stateful widget that will return a card of sorts that has the current
 /// price of a given Crypto Currency. The widget takes one parameter of type

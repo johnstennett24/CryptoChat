@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:crypto_web_app/CryptoChart.dart';
-import 'package:crypto_web_app/CurrentPrice.dart';
-import 'package:crypto_web_app/BottomAppBar.dart' as bottom;
+import 'package:crypto_web_app/widgets/CryptoChart.dart';
+import 'package:crypto_web_app/widgets/CurrentPrice.dart';
+import 'package:crypto_web_app/widgets/BottomAppBar.dart' as bottom;
 
 /// This is the HomePage widget that will show when the app is started.
 /// The HomePage is a stateful widget that shows the other two widgets
@@ -34,9 +34,9 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.transparent,
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text("Search"),
                   Icon(Icons.search),
                 ],

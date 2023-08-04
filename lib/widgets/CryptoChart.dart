@@ -1,9 +1,9 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:crypto_web_app/DataServices.dart';
+import 'package:crypto_web_app/data/DataServices.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:crypto_web_app/CryptoPrice.dart';
+import 'package:crypto_web_app/models/CryptoPrice.dart';
 
 /// CryptoChart is a Stateful widget that returns a Container that has a
 /// Syncfusion line chart that is imported from the Syncfusion Library

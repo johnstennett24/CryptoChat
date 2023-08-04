@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:crypto_web_app/CryptoPrice.dart';
+import 'package:crypto_web_app/models/CryptoPrice.dart';
 import 'package:http/http.dart' as http;
 
 ///
